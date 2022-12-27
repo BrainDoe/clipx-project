@@ -1,8 +1,11 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from './components/modal/modal.component';
 import { TabsContainerComponent } from './tabs-container/tabs-container.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { InputComponent } from './input/input.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 
@@ -10,11 +13,14 @@ import { TabsComponent } from './tabs/tabs.component';
   declarations: [
     ModalComponent,
     TabsContainerComponent,
-    TabsComponent
+    TabsComponent,
+    InputComponent,
+    AlertComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
-  exports: [ModalComponent, TabsContainerComponent, TabsComponent]
+  exports: [ModalComponent, TabsContainerComponent, TabsComponent, InputComponent, AlertComponent]
 })
 export class SharedModule { }
