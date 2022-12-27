@@ -9,7 +9,16 @@ export class LoginComponent implements OnInit {
 
   constructor() { }
 
+  credentials = {
+    email: '',
+    password: ''
+  }
+
   ngOnInit(): void {
+  }
+
+  login() {
+    console.log(this.credentials);
   }
 
 }
