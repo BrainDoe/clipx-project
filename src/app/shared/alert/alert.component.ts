@@ -6,14 +6,17 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./alert.component.css']
 })
 export class AlertComponent implements OnInit {
-  @Input() color = 'blue';
-
+  @Input() color!: string;
+  // c: string = '';
+  
   constructor() { }
 
   ngOnInit(): void {
+    // this.c = `bg-${this.color}-400`
+    console.log(`bg-${this.color}-400`);
   }
 
-  get bgColor() {
+  get alertBgColor() {
     return `bg-${this.color}-400`
   }
 
