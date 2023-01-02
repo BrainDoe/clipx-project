@@ -1,3 +1,4 @@
+import { RegisterValidators } from './../validators/register-validators';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -38,7 +39,7 @@ export class RegistrationComponent {
     confirmPassword: this.confirmPassword,
     phoneNumber: this.phoneNumber,
     age: this.age,
-  });
+  }, [RegisterValidators.match('password', 'confirmPassword')]);
 
   async register() {
     this.showAlert = true;
