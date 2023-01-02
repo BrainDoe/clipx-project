@@ -1,3 +1,4 @@
+import { EmailTaken } from './../validators/email-taken';
 import { RegisterValidators } from './../validators/register-validators';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
@@ -14,7 +15,8 @@ import IUser from 'src/app/models/user.model';
 export class RegistrationComponent {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private emailTaken: EmailTaken
   ) { }
   showAlert = false;
   alertMsg = 'Please wait! Your account is being created!';
@@ -22,7 +24,7 @@ export class RegistrationComponent {
   inSubmission = false;
 
   name = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required, Validators.email], [this.emailTaken.validate]);
   password = new FormControl('', [
     Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/gm)
   ]);
