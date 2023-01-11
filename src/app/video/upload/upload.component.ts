@@ -80,8 +80,7 @@ export class UploadComponent implements OnInit {
         this.alertColor = 'red';
         this.alertMsg = 'Upload failed! Please try again!';
         this.inSubmission = true;
-        this.showPercentage = true;
-        console.error(error);
+        this.showPercentage = false;
       }
     });
   }
