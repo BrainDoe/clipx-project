@@ -6,6 +6,7 @@ import { TabsContainerComponent } from './tabs-container/tabs-container.componen
 import { TabsComponent } from './tabs/tabs.component';
 import { InputComponent } from './input/input.component';
 import { AlertComponent } from './alert/alert.component';
+import { EventBlockerDirective } from './directives/event-blocker.directive';
 
 
 
@@ -15,12 +16,13 @@ import { AlertComponent } from './alert/alert.component';
     TabsContainerComponent,
     TabsComponent,
     InputComponent,
-    AlertComponent
+    AlertComponent,
+    EventBlockerDirective
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
-  exports: [ModalComponent, TabsContainerComponent, TabsComponent, InputComponent, AlertComponent]
+  exports: [ModalComponent, TabsContainerComponent, TabsComponent, InputComponent, AlertComponent, EventBlockerDirective]
 })
 export class SharedModule { }
