@@ -21,10 +21,12 @@ export class AuthService {
     private router: Router,
     private route: ActivatedRoute
   ) { 
-    this.userCollection = db.collection('users');
+    // this.userCollection = db.collection('users');
+    this.userCollection = this.db.collection('users')
     this.isAuthenticated$ = auth.user.pipe(
       map(user => !!user)
     )
+    
     this.isAuthenticatedWithDelay$ = this.isAuthenticated$.pipe(
       delay(1000)
     )

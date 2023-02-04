@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { ManageComponent } from './manage/manage.component';
 import { UploadComponent } from './upload/upload.component';
+import { EditComponent } from './edit/edit.component';
 
 
 
@@ -13,6 +14,7 @@ import { UploadComponent } from './upload/upload.component';
   declarations: [
     ManageComponent,
     UploadComponent,
+    EditComponent,
   ],
   imports: [
     CommonModule,
