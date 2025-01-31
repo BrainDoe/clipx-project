@@ -10,38 +10,47 @@ import IUser from 'src/app/models/user.model';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent {
-
   constructor(
     private authService: AuthService,
     private emailTaken: EmailTaken
-  ) { }
+  ) {}
   showAlert = false;
   alertMsg = 'Please wait! Your account is being created!';
   alertColor = 'blue';
   inSubmission = false;
 
   name = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  email = new FormControl('', [Validators.required, Validators.email], [this.emailTaken.validate]);
+  email = new FormControl(
+    '',
+    [Validators.required, Validators.email],
+    [this.emailTaken.validate]
+  );
   password = new FormControl('', [
-    Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/gm)
+    Validators.required,
+    Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/gm),
   ]);
-  confirmPassword = new FormControl('', [Validators.required])
-  phoneNumber = new FormControl('', [
-    Validators.required
+  confirmPassword = new FormControl('', [Validators.required]);
+  phoneNumber = new FormControl('', [Validators.required]);
+  age = new FormControl(null, [
+    Validators.required,
+    Validators.min(18),
+    Validators.max(100),
   ]);
-  age = new FormControl(null, [Validators.required, Validators.min(18), Validators.max(100)])
 
-  registerForm = new FormGroup({
-    name: this.name,
-    email: this.email,
-    password: this.password,
-    confirmPassword: this.confirmPassword,
-    phoneNumber: this.phoneNumber,
-    age: this.age,
-  }, [RegisterValidators.match('password', 'confirmPassword')]);
+  registerForm = new FormGroup(
+    {
+      name: this.name,
+      email: this.email,
+      password: this.password,
+      confirmPassword: this.confirmPassword,
+      phoneNumber: this.phoneNumber,
+      age: this.age,
+    },
+    [RegisterValidators.match('password', 'confirmPassword')]
+  );
 
   async register() {
     this.showAlert = true;
@@ -51,6 +60,9 @@ export class RegistrationComponent {
 
     try {
       await this.authService.createUser(this.registerForm.value as IUser);
+
+      this.alertMsg = 'Succes! Your account has been created.';
+      this.alertColor = 'green';
     } catch (error) {
       console.error(error);
       this.alertMsg = 'Error occurred. Please try again later';
@@ -58,9 +70,5 @@ export class RegistrationComponent {
       this.inSubmission = false;
       return;
     }
-
-    this.alertMsg = 'Succes! Your account has been created.';
-    this.alertColor = 'green';
   }
-
 }
